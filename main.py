@@ -1,5 +1,5 @@
 # ══════════════════════════════════════════════════════════════════════
-#  ProAdBot v2.2  –  Production-Ready Multi-User Ad Forwarding System
+#  AdNexHQ v2.2  –  Production-Ready Multi-User Ad Forwarding System
 # ══════════════════════════════════════════════════════════════════════
 #
 #  QUICK START:
@@ -611,7 +611,7 @@ class AdBot:
         self.app.add_handler(MessageHandler(filters.ALL & ~filters.COMMAND, self._on_msg))
         self.app.add_error_handler(self._on_err)
         self.app.post_init = self._post_init
-        print("✅  ProAdBot v2.2 starting…")
+        print("✅  AdNexHQ v2.2 starting…\n📢 Join @AdNexHQ for updates!\n")
         self.app.run_polling(drop_pending_updates=True)
 
     async def _post_init(self, app):
@@ -787,8 +787,8 @@ class AdBot:
     # ══════════════════════════════════════════════════
 
     async def _m_public(self, update, ctx):
-        text = "👋 *ProAdBot v2.2*\n\nPrivate Telegram ad forwarding system.\n\nContact @YourUsername for access."
-        kb = InlineKeyboardMarkup([[InlineKeyboardButton("📩 Get Access", url="https://t.me/YourUsername")]])
+        text = "👋 *AdNexHQ v2.2*\n\nPrivate Telegram ad forwarding system.\n\nContact @vwdgt for access."
+        kb = InlineKeyboardMarkup([[InlineKeyboardButton("📩 Get Access", url="https://t.me/vwdgt")]])
         if update.callback_query: await edit(update.callback_query, text, kb)
         else: await update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN, reply_markup=kb)
 
@@ -895,11 +895,12 @@ class AdBot:
         n_run = sum(1 for s in sbs if s["fwd_running"])
         n_con = sum(1 for s in sbs if self.reg.get(s["id"]) and self.reg.get(s["id"]).is_auth)
         g_tot = len(self.db.groups_for_user(uid))
-        text = (f"👋 *ProAdBot v2.2*\n\n"
-                f"Plan: {pl.get('label','—')}  ·  {exp}\n"
-                f"Selfbots: {n_con} connected  ·  {n_run} forwarding\n"
-                f"Groups: {g_tot} active\n\n"
-                "_Use buttons or slash commands_")
+        text = (f"👋 *AdNexHQ v2.2*\n\n"
+            f"Plan: {pl.get('label','—')}  ·  {exp}\n"
+            f"Selfbots: {n_con} connected  ·  {n_run} forwarding\n"
+            f"Groups: {g_tot} active\n\n"
+            f"_Use buttons or slash commands_\n\n"
+            f"📢 Join @AdNexHQ for latest updates!")
         rows = [
             [InlineKeyboardButton("🤖 Selfbots",  callback_data="m_selfbots"),
              InlineKeyboardButton("👥 Groups",     callback_data="m_groups")],
@@ -1551,7 +1552,7 @@ if __name__ == "__main__":
 
     print("""
 ╔══════════════════════════════════════════════════════╗
-║            ProAdBot  v2.2  –  Starting               ║
+║            AdNexHQ  v2.2  –  Starting               ║
 ║  /selfbots /groups /sync /status /start_all /stop_all║
 ╚══════════════════════════════════════════════════════╝""")
 
